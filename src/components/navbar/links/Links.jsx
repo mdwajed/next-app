@@ -19,7 +19,7 @@ export default function Links() {
 
   return (
     <div className="">
-      <div className="hidden md:flex items-center  justify-between gap-2 text-sm md:text-lg lg:text-xl">
+      <div className="hidden md:flex items-center  justify-between gap-2 text-sm md:text-base lg:text-lg">
         {links.map((link) => (
           <Link href={link.url} key={link.title}>
             <span
@@ -49,12 +49,12 @@ export default function Links() {
         )}
 
         {session ? (
-          <button className="text-sm md:text-lg lg:text-xl text-black bg-white px-3 py-2 rounded-3xl">
+          <button className="text-sm md:text-base lg:text-lg text-black bg-white px-3 py-1 ">
             Logout
           </button>
         ) : (
           <Link href="/login">
-            <span className="text-sm md:text-lg lg:text-xl text-black bg-white px-3 py-2 rounded-3xl">
+            <span className="text-sm md:text-base lg:text-lg text-black bg-white px-3 py-1 ">
               Login
             </span>
           </Link>
