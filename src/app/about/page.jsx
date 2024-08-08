@@ -1,6 +1,11 @@
 import Image from "next/image";
 import React from "react";
 
+export const metadata = {
+  title: "About Page",
+  description: "About Page Description",
+};
+
 export default function AboutPage() {
   return (
     <div className="flex gap-24 max-h-screen my-24">

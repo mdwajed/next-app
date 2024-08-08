@@ -1,6 +1,10 @@
 import Image from "next/image";
 import React from "react";
 
+export const metadata = {
+  title: "Contact Page",
+  description: "Contact Page Description",
+};
 export default function ContactPage() {
   return (
     <div className="md:flex gap-24 my-16 mx-auto">
