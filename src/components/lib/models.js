@@ -18,9 +18,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       minlength: 6,
+      default: "", 
     },
     img: {
       type: String,
+      default: "",
     },
     isAdmin: {
       type: Boolean,
@@ -41,9 +43,11 @@ const postSchema = new mongoose.Schema(
     },
     img: {
       type: String,
+      default: "",
     },
     userId: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId, // Referencing the User model
+      ref: "User",
       required: true,
     },
     slug: {

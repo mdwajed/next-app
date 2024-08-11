@@ -1,4 +1,5 @@
 "use client";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -6,9 +7,10 @@ import React, { useState } from "react";
 
 export default function Links() {
   const pathname = usePathname();
+  const { data: session, status } = useSession();
   const [open, setOpen] = useState(false);
   // TEMPORARY
-  const session = true;
+  //  const session = true;
   const isAdmin = true;
   const links = [
     { title: "Home", url: "/" },
@@ -48,8 +50,11 @@ export default function Links() {
           </Link>
         )}
 
-        {session ? (
-          <button className="text-sm md:text-base lg:text-lg text-black bg-white px-3 py-1 ">
+        {status === "authenticated" ? (
+          <button
+            onClick={() => signOut({ callbackUrl: "/login" })}
+            className="text-sm md:text-base lg:text-lg text-black bg-white px-3 py-1 "
+          >
             Logout
           </button>
         ) : (
@@ -60,13 +65,6 @@ export default function Links() {
           </Link>
         )}
       </div>
-      {/* <button
-        className="block md:hidden"
-        type="button"
-        onClick={() => setOpen((prev) => !prev)}
-      >
-        Menu
-      </button> */}
       <Image
         className="block md:hidden"
         src="/menu.png"
