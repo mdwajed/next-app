@@ -52,14 +52,14 @@ export default function Links() {
 
         {status === "authenticated" ? (
           <button
-            onClick={() => signOut({ callbackUrl: "/login" })}
+            onClick={() => signOut({ callbackUrl: "/" })}
             className="text-sm md:text-base lg:text-lg text-black bg-white px-3 py-1 "
           >
             Logout
           </button>
         ) : (
           <Link href="/login">
-            <span className="text-sm md:text-base lg:text-lg text-black bg-white px-3 py-1 ">
+            <span className="text-sm md:text-base lg:text-lg text-black bg-white px-3 py-2 ">
               Login
             </span>
           </Link>

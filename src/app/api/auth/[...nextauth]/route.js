@@ -1,10 +1,10 @@
 import { connectDB } from "@/components/lib/connectDB";
 import { User } from "@/components/lib/models";
-import NextAuth from "next-auth";
 import bcrypt from "bcrypt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
+import NextAuth from "next-auth/next";
 const handler = NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
   session: {
