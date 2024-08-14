@@ -10,6 +10,6 @@ export const middleware = (request) => {
   return NextResponse.next();
 };
 
-export const config={
-    matcher:['/blog/:path*']
-}
+export const config = {
+  matcher: "/blog"
+};

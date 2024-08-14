@@ -16,13 +16,13 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
-      minlength: 6,
-      default: "", 
+      // required: true,
+       minlength: 6,
+      // default: "", 
     },
     img: {
       type: String,
-      default: "",
+      // default: "",
     },
     isAdmin: {
       type: Boolean,
@@ -46,8 +46,7 @@ const postSchema = new mongoose.Schema(
       default: "",
     },
     userId: {
-      type: mongoose.Schema.Types.ObjectId, // Referencing the User model
-      ref: "User",
+      type: String, 
       required: true,
     },
     slug: {

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import SocialLogin from "@/components/socialLogin/SocialLogin";
@@ -8,6 +8,7 @@ import Link from "next/link";
 export default function LoginPage() {
   const { status } = useSession();
   const router = useRouter();
+  const [error, setError] = useState(null);
   const handleSignIn = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -18,12 +19,11 @@ export default function LoginPage() {
       redirect: false,
     });
     if (result?.error) {
-      console.error("Login failed:", result.error);
+      setError(result.error);
       return;
     }
-    e.target.reset();
+    setError(null);
   };
-  // Redirect to homepage
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -54,6 +54,7 @@ export default function LoginPage() {
             // placeholder="Enter Your password"
             required
           />
+         
           <button
             type="submit"
             className="border-none p-3 bg-[#d50000] mt-3 uppercase"
@@ -61,6 +62,9 @@ export default function LoginPage() {
             Login
           </button>
         </div>
+        {error && (
+            <p className="text-red-600 mt-2">{error}</p> // Display the error message
+          )}
       </form>
       <h1 className=" text-center my-4">Or social Log in </h1>
       <SocialLogin />

@@ -7,11 +7,11 @@ import React, { useState } from "react";
 
 export default function Links() {
   const pathname = usePathname();
-  const { data: session, status } = useSession();
+  const { data: session, status} = useSession();
   const [open, setOpen] = useState(false);
   // TEMPORARY
   //  const session = true;
-  const isAdmin = true;
+  // const isAdmin = true;
   const links = [
     { title: "Home", url: "/" },
     { title: "About", url: "/about" },
@@ -36,7 +36,7 @@ export default function Links() {
           </Link>
         ))}
 
-        {isAdmin && (
+        {session?.user?.isAdmin && (
           <Link href="/admin">
             <span
               className={`px-4 py-2 rounded-3xl ${
@@ -52,14 +52,15 @@ export default function Links() {
 
         {status === "authenticated" ? (
           <button
-            onClick={() => signOut({ callbackUrl: "/" })}
-            className="text-sm md:text-base lg:text-lg text-black bg-white px-3 py-1 "
+            onClick={() => signOut()}
+            // { callbackUrl: "/login" }
+            className="text-sm md:text-base lg:text-lg text-black bg-white px-4 py-1 rounded-3xl"
           >
             Logout
           </button>
         ) : (
           <Link href="/login">
-            <span className="text-sm md:text-base lg:text-lg text-black bg-white px-3 py-2 ">
+            <span className="text-sm md:text-base lg:text-lg text-black bg-white px-4 py-2 rounded-3xl">
               Login
             </span>
           </Link>

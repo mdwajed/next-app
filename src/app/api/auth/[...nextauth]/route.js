@@ -52,17 +52,16 @@ const handler = NextAuth({
   callbacks: {
     async signIn({ account, profile }) {
       if (account.provider === "google" || account.provider === "github") {
-        const {name:username, email, image:img } = profile;
+        const { name: username, email, image: img } = profile;
         try {
           await connectDB();
           const userExist = await User.findOne({ email });
           if (!userExist) {
             const newUser = new User({
               username,
-
               email,
               img,
-              password: 'defaultpassword',
+              // password: "defaultpassword",
             });
             await newUser.save();
           }
@@ -73,6 +72,38 @@ const handler = NextAuth({
         }
       }
       return true;
+    },
+    // async session({ session}) {
+    //   // Fetch the user's information from the database
+    //   await connectDB();
+    //   const user = await User.findOne({ email: session.user.email });
+    //   if (user) {
+    //     session.user.isAdmin = user.isAdmin;
+    //   }
+    //   return session;
+    // },
+    // async session({ session, token }) {
+    //   if (token) {
+    //     session.user.id = token.id;
+    //     session.user.isAdmin = token.isAdmin;
+    //   }
+    //   return session;
+    // },
+    async jwt({ token, user }) {
+      // Add user id and isAdmin to the JWT token
+      if (user) {
+        token.id = user._id;
+        token.isAdmin = user.isAdmin;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      // Add user id and isAdmin from token to session
+      if (token) {
+        session.user.id = token.id;
+        session.user.isAdmin = token.isAdmin;
+      }
+      return session;
     },
   },
 });
