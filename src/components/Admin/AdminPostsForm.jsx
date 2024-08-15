@@ -40,7 +40,7 @@ export default function AdminPostsForm() {
         type="text"
         name="desc"
         placeholder="Description"
-        rows={8}
+        rows={10}
         className=" p-4 bg-[#2d2b42] border-none"
       />
       <button className="bg-[#2196f3]  p-4 ">Add Post</button>

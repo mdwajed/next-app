@@ -11,17 +11,23 @@ export default async function AdminPosts() {
       {posts.map((post) => (
         <div className="flex justify-between" key={post.id}>
           <div className="mb-2">
-            <Image
-              src={post.img || "/noAvatar.png"}
-              alt=""
-              width={80}
-              height={60}
-            />
-            <small className="">{post.title}</small>
+            <div className="w-20 h-20">
+              {/* Container with fixed width and height */}
+              <Image
+                src={post.img || "/noAvatar.png"}
+                alt=""
+                width={80}
+                height={60}
+                className="object-cover w-full h-full " // Ensures the image covers the container
+              />
+            </div>
+            <small>{post.title}</small>
           </div>
           <form action={deletePost}>
             <input type="hidden" name="id" value={post.id} />
-            <button className="bg-[#2196f3] px-2 py-1 rounded-md">Delete</button>
+            <button className="bg-[#2196f3] px-2 py-1 rounded-md">
+              Delete
+            </button>
           </form>
         </div>
       ))}

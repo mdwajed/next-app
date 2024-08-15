@@ -21,7 +21,6 @@ export default function PostCard({ post }) {
 
       <div className="w-[70%]">
         <h1 className="text-2xl mb-4 font-bold">{post.title}</h1>
-        <h3 className="text-gray-600  font-bold mb-4 w-[90%]">{post.desc}</h3>
         <button className="">
           <Link href={`/blog/${post.slug}`} className="underline">
             READ MORE
